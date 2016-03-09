@@ -10,10 +10,10 @@ public class UpdateMandatoryInformation {
 	private String stageName;
 	private Date stageDate;
 	private int stageKilomitersTotal;
-	private Map<Integer, Integer> stageAltitudeByKilomiter;
+	private Map<Double, Double> stageAltitudeByKilomiter;
 	
 	public UpdateMandatoryInformation() {
-		stageAltitudeByKilomiter = new HashMap<Integer, Integer>();
+		stageAltitudeByKilomiter = new HashMap<Double, Double>();
 	}
 	public String getStageId() {
 		return stageId;
@@ -39,10 +39,10 @@ public class UpdateMandatoryInformation {
 	public void setStageKilomitersTotal(int stageKilomitersTotal) {
 		this.stageKilomitersTotal = stageKilomitersTotal;
 	}
-	public Map<Integer, Integer> getStageAltitudeByKilomiter() {
+	public Map<Double, Double> getStageAltitudeByKilomiter() {
 		return stageAltitudeByKilomiter;
 	}
-	public void setStageAltitudeByKilomiter(Map<Integer, Integer> stageAltitudeByKilomiter) {
+	public void setStageAltitudeByKilomiter(Map<Double, Double> stageAltitudeByKilomiter) {
 		this.stageAltitudeByKilomiter = stageAltitudeByKilomiter;
 	}
 }

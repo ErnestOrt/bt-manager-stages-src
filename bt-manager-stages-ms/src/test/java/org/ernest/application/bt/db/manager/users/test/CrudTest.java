@@ -46,34 +46,33 @@ public class CrudTest {
 	}
 	
 	@Test
-	public void updateUserName(){
+	public void updateMandatoryInformation(){
 		UpdateMandatoryInformation updateMandatoryInformation = new UpdateMandatoryInformation();
 		updateMandatoryInformation.setStageId(satgeIdCreated);
 		updateMandatoryInformation.setStageName("New Name");
 		updateMandatoryInformation.setStageDate(new Date());
 		updateMandatoryInformation.setStageKilomitersTotal(80);
-		Map<Integer, Integer> altitude = new HashMap<Integer, Integer>();
-		altitude.put(0, 200);
-		altitude.put(10, 250);
-		altitude.put(20, 300);
-		altitude.put(30, 310);
-		altitude.put(40, 300);
-		altitude.put(50, 360);
-		altitude.put(60, 340);
-		altitude.put(70, 345);
-		altitude.put(80, 340);
-		altitude.put(90, 330);
-		altitude.put(100, 280);
-		updateMandatoryInformation.setStageAltitudeByKilomiter(altitude);
 		
-		System.out.println(new Gson().toJson(updateMandatoryInformation));
-
+		Map<Double, Double> altitude = new HashMap<Double, Double>();
+		altitude.put(Double.parseDouble("0"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("10"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("20"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("30"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("40"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("50"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("60"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("70"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("80"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("90"), Double.parseDouble("200"));
+		altitude.put(Double.parseDouble("100"), Double.parseDouble("200"));
+		updateMandatoryInformation.setStageAltitudeByKilomiter(altitude);
+	
 		new RestTemplate().postForObject("http://localhost:"+port+"/update/mandatoryinformation", updateMandatoryInformation, String.class);
 		Assert.assertEquals(updateMandatoryInformation.getStageName(), new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+satgeIdCreated, Stage.class).getName());
 	}
 
 	@Test
-	public void updateStage(){
+	public void updateJoinAndUnjoinStage(){
 		UpdateJoinStageInput updateJoinStageInput = new UpdateJoinStageInput();
 		updateJoinStageInput.setStageId(satgeIdCreated);
 		updateJoinStageInput.setMemberId(UUID.randomUUID().toString());
