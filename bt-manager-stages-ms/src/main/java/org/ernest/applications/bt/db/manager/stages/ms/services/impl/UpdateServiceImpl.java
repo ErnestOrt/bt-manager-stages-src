@@ -23,7 +23,7 @@ public class UpdateServiceImpl implements UpdateService {
 		Stage stage = crudService.retrieve(updateMandatoryInformation.getStageId());
 		stage.setName(updateMandatoryInformation.getStageName());
 		stage.setDate(updateMandatoryInformation.getStageDate());
-		stage.setAltitudeByKilomiter(updateMandatoryInformation.getStageAltitudeByKilomiter());
+		stage.setStagePoints(updateMandatoryInformation.getStagePoints());
 		stage.setKilomitersTotal(updateMandatoryInformation.getStageKilomitersTotal());
 		crudService.update(stage);
 		

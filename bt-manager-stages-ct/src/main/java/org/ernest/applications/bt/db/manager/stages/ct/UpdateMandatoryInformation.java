@@ -1,8 +1,10 @@
 package org.ernest.applications.bt.db.manager.stages.ct;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+import org.ernest.applications.bt.db.manager.stages.ct.entities.StagePoint;
 
 public class UpdateMandatoryInformation {
 
@@ -10,10 +12,10 @@ public class UpdateMandatoryInformation {
 	private String stageName;
 	private Date stageDate;
 	private int stageKilomitersTotal;
-	private Map<Double, Double> stageAltitudeByKilomiter;
+	private List<StagePoint> stagePoints;
 	
 	public UpdateMandatoryInformation() {
-		stageAltitudeByKilomiter = new HashMap<Double, Double>();
+		stagePoints = new ArrayList<StagePoint>();
 	}
 	public String getStageId() {
 		return stageId;
@@ -39,10 +41,11 @@ public class UpdateMandatoryInformation {
 	public void setStageKilomitersTotal(int stageKilomitersTotal) {
 		this.stageKilomitersTotal = stageKilomitersTotal;
 	}
-	public Map<Double, Double> getStageAltitudeByKilomiter() {
-		return stageAltitudeByKilomiter;
+	public List<StagePoint> getStagePoints() {
+		return stagePoints;
 	}
-	public void setStageAltitudeByKilomiter(Map<Double, Double> stageAltitudeByKilomiter) {
-		this.stageAltitudeByKilomiter = stageAltitudeByKilomiter;
+	public void setStagePoints(List<StagePoint> stagePoints) {
+		this.stagePoints = stagePoints;
 	}
+
 }

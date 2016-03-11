@@ -1,7 +1,9 @@
 package org.ernest.application.bt.db.manager.users.test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,6 +11,7 @@ import org.ernest.applications.bt.db.manager.stages.ct.UpdateJoinStageInput;
 import org.ernest.applications.bt.db.manager.stages.ct.UpdateMandatoryInformation;
 import org.ernest.applications.bt.db.manager.stages.ct.UpdateUnjoinStageInput;
 import org.ernest.applications.bt.db.manager.stages.ct.entities.Stage;
+import org.ernest.applications.bt.db.manager.stages.ct.entities.StagePoint;
 import org.ernest.applications.bt.db.manager.stages.ms.Application;
 import org.junit.After;
 import org.junit.Assert;
@@ -20,8 +23,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
-
-import com.google.gson.Gson;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
@@ -53,20 +54,20 @@ public class CrudTest {
 		updateMandatoryInformation.setStageDate(new Date());
 		updateMandatoryInformation.setStageKilomitersTotal(80);
 		
-		Map<Double, Double> altitude = new HashMap<Double, Double>();
-		altitude.put(Double.parseDouble("0"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("10"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("20"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("30"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("40"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("50"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("60"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("70"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("80"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("90"), Double.parseDouble("200"));
-		altitude.put(Double.parseDouble("100"), Double.parseDouble("200"));
-		updateMandatoryInformation.setStageAltitudeByKilomiter(altitude);
-	
+		List<StagePoint> stagePoints = new ArrayList<StagePoint>();
+		stagePoints.add(new StagePoint(0.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(10.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(20.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(30.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(40.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(50.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(60.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(70.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(80.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(90.0, 20.2, 20.2, 30.2));
+		stagePoints.add(new StagePoint(100.0, 20.2, 20.2, 30.2));
+		updateMandatoryInformation.setStagePoints(stagePoints);
+		
 		new RestTemplate().postForObject("http://localhost:"+port+"/update/mandatoryinformation", updateMandatoryInformation, String.class);
 		Assert.assertEquals(updateMandatoryInformation.getStageName(), new RestTemplate().getForObject("http://localhost:"+port+"/retrieve/"+satgeIdCreated, Stage.class).getName());
 	}
